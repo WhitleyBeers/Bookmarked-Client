@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { getSingleBook } from '../../api/bookData';
@@ -14,11 +15,28 @@ export default function BookDetailsPage() {
 
   useEffect(() => {
     getBookDetails();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
     <>
-      <div>{bookDetails.title}</div>
+      <div className="d-flex">
+        <div className="mt-1 mx-auto">
+          <img src={bookDetails.image_url} alt={bookDetails.title} style={{ height: '224px', width: '159px' }} />
+          <h2>
+            {bookDetails.title} {bookDetails.favorite ? '❤' : ''}
+          </h2>
+          <div>
+            <em>{bookDetails.author}</em>
+          </div>
+          <div>
+            <em><b>{bookDetails.status}</b></em>
+          </div>
+          <p className="mb-1">
+            {bookDetails.description}
+          </p>
+        </div>
+      </div>
       <div><ReviewForm onUpdate={getBookDetails} /></div>
     </>
   );
