@@ -80,7 +80,7 @@ function RegisterForm({ user, updateUser }) {
         <Form.Text className="text-muted" />
       </Form.Group>
 
-      {/* ADDRESS FIELD */}
+      {/* BIO FIELD */}
       <Form.Group className="mb-3" controlId="bio">
         <Form.Label>Tell us about yourself:</Form.Label>
         <Form.Control type="textarea" name="bio" required value={formData.bio} onChange={handleChange} />
