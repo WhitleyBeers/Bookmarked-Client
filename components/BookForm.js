@@ -70,7 +70,10 @@ export default function BookForm({ obj }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className="mt-3">
+      <h3>
+        {obj.id ? 'Edit' : 'Add'} Book
+      </h3>
 
       {/* TITLE FIELD */}
       <Form.Group className="mb-3">
@@ -150,8 +153,8 @@ export default function BookForm({ obj }) {
         }}
       />
 
-      <Button type="submit">Submit</Button>
-      <Button onClick={() => router.back()}>Cancel</Button>
+      <Button type="submit" className="m-2">Submit</Button>
+      <Button variant="danger" className="m-2" onClick={() => router.back()}>Cancel</Button>
 
     </Form>
   );
