@@ -9,7 +9,7 @@ import { createReview, updateReview } from '../api/reviewData';
 
 const initialState = {
   content: '',
-  rating: '',
+  rating: 0,
 };
 
 export default function ReviewForm({ obj, onUpdate }) {
@@ -18,7 +18,7 @@ export default function ReviewForm({ obj, onUpdate }) {
   const handleClose = () => setShow(false);
   const handleOpen = () => setShow(true);
   const router = useRouter();
-  const book = router.query;
+  const book = parseInt(router.query.id, 10);
   const { user } = useAuth();
 
   useEffect(() => {
@@ -78,7 +78,7 @@ export default function ReviewForm({ obj, onUpdate }) {
           <Form onSubmit={handleSubmit}>
 
             {/* CONTENT FIELD */}
-            <FloatingLabel label="Write your review" classname="mb-2">
+            <FloatingLabel label="Write your review" className="mb-2">
               <Form.Control
                 type="textarea"
                 name="content"
@@ -90,7 +90,6 @@ export default function ReviewForm({ obj, onUpdate }) {
 
             {/* RATING SELECT */}
             <Form.Group className="mb-2">
-              <Form.Label>Rating</Form.Label>
               <Form.Select
                 name="rating"
                 onChange={handleChange}
@@ -98,11 +97,11 @@ export default function ReviewForm({ obj, onUpdate }) {
                 required
               >
                 <option value="">Select your rating:</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
               </Form.Select>
             </Form.Group>
 
