@@ -8,6 +8,12 @@ const getSingleReview = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getBookReviews = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/books/${id}/reviews`)
+    .then((response) => resolve(response.json()))
+    .catch(reject);
+});
+
 const createReview = (review) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/books/${review.bookId}/post_review`, {
     method: 'POST',
@@ -33,4 +39,6 @@ const updateReview = (review) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { getSingleReview, createReview, updateReview };
+export {
+  getSingleReview, createReview, updateReview, getBookReviews,
+};
