@@ -2,6 +2,16 @@ import { clientCredentials } from '../utils/client';
 
 const dbUrl = clientCredentials.databaseURL;
 
+const getBooks = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/books`, {
+    headers: {
+      Authorization: `${id}`,
+    },
+  })
+    .then((response) => resolve(response.json()))
+    .catch(reject);
+});
+
 const getSingleBook = (id) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/books/${id}`)
     .then((response) => response.json())
@@ -34,4 +44,6 @@ const updateBook = (book) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { getSingleBook, createBook, updateBook };
+export {
+  getBooks, getSingleBook, createBook, updateBook,
+};
