@@ -11,8 +11,8 @@ export default function BookCard({ obj, onUpdate }) {
   };
 
   return (
-    <Card className="py-3 px-1 series-card">
-      <Card.Img src={obj.image_url} alt={obj.title} style={{ height: '250px', width: '175px' }} className="mx-auto" />
+    <Card className="py-3 px-1 text-center m-2" style={{ width: '14rem' }}>
+      <Card.Img src={obj.image_url} alt={obj.title} style={{ height: '250px', width: '175px' }} className="mx-auto mb-2" />
       <Card.Title>
         {obj.title}
         {obj.favorite ? '❤' : ''}
@@ -31,7 +31,7 @@ export default function BookCard({ obj, onUpdate }) {
           <Dropdown.Item href={`/library/${obj.id}`}>
             View Details
           </Dropdown.Item>
-          <Dropdown.Item href={`/library/edit${obj.id}`}>
+          <Dropdown.Item href={`/library/edit/${obj.id}`}>
             Edit Book Info
           </Dropdown.Item>
           <Dropdown.Item onClick={deleteThisBook}>
