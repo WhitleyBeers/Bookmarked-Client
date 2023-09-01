@@ -14,7 +14,7 @@ export default function LibraryPage() {
   useEffect(() => {
     getAllBooks();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, books]);
+  }, [user]);
 
   return (
     <>
