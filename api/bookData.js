@@ -2,6 +2,24 @@ import { clientCredentials } from '../utils/client';
 
 const dbUrl = clientCredentials.databaseURL;
 
+const getBooks = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/books`, {
+    headers: {
+      Authorization: `${id}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        const bookArray = data.sort((a, b) => b.date_added.localeCompare(a.date_added));
+        resolve(bookArray);
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
 const getSingleBook = (id) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/books/${id}`)
     .then((response) => response.json())
@@ -34,4 +52,14 @@ const updateBook = (book) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { getSingleBook, createBook, updateBook };
+const deleteBook = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/books/${id}`, {
+    method: 'DELETE',
+  })
+    .then((response) => resolve(response.json))
+    .catch(reject);
+});
+
+export {
+  getBooks, getSingleBook, createBook, updateBook, deleteBook,
+};
