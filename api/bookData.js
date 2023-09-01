@@ -44,6 +44,14 @@ const updateBook = (book) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const deleteBook = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/books/${id}`, {
+    method: 'DELETE',
+  })
+    .then((response) => resolve(response.json))
+    .catch(reject);
+});
+
 export {
-  getBooks, getSingleBook, createBook, updateBook,
+  getBooks, getSingleBook, createBook, updateBook, deleteBook,
 };
