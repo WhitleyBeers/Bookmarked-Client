@@ -8,7 +8,15 @@ const getBooks = (id) => new Promise((resolve, reject) => {
       Authorization: `${id}`,
     },
   })
-    .then((response) => resolve(response.json()))
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        const bookArray = data.sort((a, b) => b.date_added.localeCompare(a.date_added));
+        resolve(bookArray);
+      } else {
+        resolve([]);
+      }
+    })
     .catch(reject);
 });
 
