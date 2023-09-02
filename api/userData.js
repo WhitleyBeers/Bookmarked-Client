@@ -2,6 +2,12 @@ import { clientCredentials } from '../utils/client';
 
 const dbUrl = clientCredentials.databaseURL;
 
+const getUsers = () => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/users`)
+    .then((response) => response.json())
+    .catch(reject);
+});
+
 const getSingleUser = (id) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/users/${id}`)
     .then((response) => response.json())
@@ -21,4 +27,4 @@ const updateUser = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { getSingleUser, updateUser };
+export { getSingleUser, updateUser, getUsers };
