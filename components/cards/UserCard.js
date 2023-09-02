@@ -2,29 +2,48 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import { useRouter } from 'next/router';
+import { useAuth } from '../../utils/context/authContext';
+import { followUser, unfollowUser } from '../../api/userData';
 
-export default function UserCard({ obj }) {
+export default function UserCard({ obj, onUpdate }) {
   const router = useRouter();
+  const { user } = useAuth();
+
+  // FOLLOW A USER
+  const follow = () => {
+    followUser(user.id, obj.id).then(onUpdate);
+  };
+
+  // UNFOLLOW A USER
+  const unfollow = () => {
+    unfollowUser(user.id, obj.id).then(onUpdate);
+  };
   return (
-    <Card className="text-center">
+    <Card className="text-center py-3 px-1 m-2" style={{ width: '18rem' }}>
       <Card.Body>
         <Card.Img
           src={obj.profile_image_url}
-          style={{ height: '150px', width: '106px', border: '1px solid black' }}
+          alt={obj.first_name}
+          style={{ height: '250px', width: '225px' }}
         />
         <Card.Text>
           {obj.first_name} {obj.last_name}
         </Card.Text>
-        <Card.Footer>
+        <Card.Text>
           <Button onClick={() => router.push(`/users/${obj.id}`)}>
             View Profile
           </Button>
-          {obj.following ? (
-            <Button variant="secondary">Follow</Button>
+          {obj.following && user.id !== obj.id ? (
+            <Button variant="danger" onClick={unfollow}>Unfollow</Button>
           ) : (
-            <Button variant="danger">Unfollow</Button>
+            ''
           )}
-        </Card.Footer>
+          {!obj.following && user.id !== obj.id ? (
+            <Button variant="secondary" onClick={follow}>Follow</Button>
+          ) : (
+            ''
+          )}
+        </Card.Text>
       </Card.Body>
     </Card>
   );
@@ -39,4 +58,5 @@ UserCard.propTypes = {
     profile_image_url: PropTypes.string,
     following: PropTypes.bool,
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };
