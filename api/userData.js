@@ -12,8 +12,12 @@ const getUsers = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getSingleUser = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/users/${id}`)
+const getSingleUser = (userId, followerId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/users/${userId}`, {
+    headers: {
+      Authorization: `${followerId}`,
+    },
+  })
     .then((response) => response.json())
     .then(resolve)
     .catch(reject);
