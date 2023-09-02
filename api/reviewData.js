@@ -14,6 +14,12 @@ const getBookReviews = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getUserReviews = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/users/${id}/reviews`)
+    .then((response) => resolve(response.json()))
+    .catch(reject);
+});
+
 const createReview = (review) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/books/${review.bookId}/post_review`, {
     method: 'POST',
@@ -40,5 +46,5 @@ const updateReview = (review) => new Promise((resolve, reject) => {
 });
 
 export {
-  getSingleReview, createReview, updateReview, getBookReviews,
+  getSingleReview, createReview, updateReview, getBookReviews, getUserReviews,
 };

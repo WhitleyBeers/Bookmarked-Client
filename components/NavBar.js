@@ -7,9 +7,15 @@ import {
   Nav,
   Button,
 } from 'react-bootstrap';
+import { useRouter } from 'next/router';
 import { signOut } from '../utils/auth';
 
 export default function NavBar() {
+  const router = useRouter();
+  const signMeOut = () => {
+    signOut();
+    router.push('/');
+  };
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -35,7 +41,7 @@ export default function NavBar() {
             <Link passHref href="/profile">
               <Nav.Link>My Profile</Nav.Link>
             </Link>
-            <Button variant="danger" onClick={signOut}>
+            <Button variant="danger" onClick={signMeOut}>
               Sign Out
             </Button>
           </Nav>

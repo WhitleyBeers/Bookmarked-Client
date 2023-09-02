@@ -56,7 +56,7 @@ const deleteBook = (id) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/books/${id}`, {
     method: 'DELETE',
   })
-    .then((response) => resolve(response.json))
+    .then((response) => resolve(response))
     .catch(reject);
 });
 
