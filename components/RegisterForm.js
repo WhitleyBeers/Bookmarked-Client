@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useRouter } from 'next/router';
 import { registerUser } from '../utils/auth';
-import { getSingleUser } from '../api/userData';
+import { getSingleUser, updateAUser } from '../api/userData';
 
 function RegisterForm({ user, updateUser }) {
   const router = useRouter();
@@ -12,7 +12,7 @@ function RegisterForm({ user, updateUser }) {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    email: user.fbUser.email,
+    email: '',
     uid: user.uid,
     profileImageUrl: '',
     bio: '',
@@ -26,8 +26,10 @@ function RegisterForm({ user, updateUser }) {
           id: userObj.id,
           firstName: userObj.first_name,
           lastName: userObj.last_name,
+          email: userObj.email,
           profileImageUrl: userObj.profile_image_url,
           bio: userObj.bio,
+          uid: userObj.uid,
         }));
       });
     }
@@ -50,8 +52,9 @@ function RegisterForm({ user, updateUser }) {
         lastName: formData.lastName,
         profileImageUrl: formData.profileImageUrl,
         bio: formData.bio,
+        email: formData.email,
       };
-      updateUser(payload).then((router.push('/profile')));
+      updateAUser(payload).then(router.push('/profile'));
     } else {
       registerUser(formData).then(() => updateUser(user.uid));
     }
@@ -80,6 +83,13 @@ function RegisterForm({ user, updateUser }) {
         <Form.Text className="text-muted" />
       </Form.Group>
 
+      {/* EMAIL FIELD */}
+      <Form.Group className="mb-3" controlId="email">
+        <Form.Label>Email Address</Form.Label>
+        <Form.Control name="email" required value={formData.email} onChange={handleChange} />
+        <Form.Text className="text-muted" />
+      </Form.Group>
+
       {/* BIO FIELD */}
       <Form.Group className="mb-3" controlId="bio">
         <Form.Label>Tell us about yourself:</Form.Label>
@@ -97,12 +107,16 @@ function RegisterForm({ user, updateUser }) {
 RegisterForm.propTypes = {
   user: PropTypes.shape({
     uid: PropTypes.string,
-    id: PropTypes.string,
-    fbUser: PropTypes.shape({
-      email: PropTypes.string,
-    }),
+    id: PropTypes.number,
+    email: PropTypes.string,
   }).isRequired,
   updateUser: PropTypes.func.isRequired,
+};
+
+RegisterForm.defaultPropTypes = {
+  user: PropTypes.shape({
+    id: '',
+  }),
 };
 
 export default RegisterForm;

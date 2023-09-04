@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
-import { getSingleUser, followUser, unfollowUser } from '../../api/userData';
+import { getUser, followUser, unfollowUser } from '../../api/userData';
 import { getUserReviews } from '../../api/reviewData';
 import ReviewCard from '../../components/cards/ReviewCard';
 
@@ -16,7 +16,7 @@ export default function UserPage() {
 
   // Gets user information and reviews associated with user
   const getUserDetails = () => {
-    getSingleUser(id, user.id).then(setUserDetails);
+    getUser(id, user.id).then(setUserDetails);
     getUserReviews(id).then(setReviews);
   };
 
