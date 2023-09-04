@@ -4,13 +4,21 @@ import { Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../utils/context/authContext';
 import { getSingleUser } from '../../api/userData';
+import { getFavoriteBooks } from '../../api/bookData';
+import BookCard from '../../components/cards/BookCard';
 
 export default function ProfilePage() {
   const { user } = useAuth();
   const router = useRouter();
   const [userDetails, setUserDetails] = useState({});
-  useEffect(() => {
+  const [favorites, setFavorites] = useState([]);
+
+  const getProfile = () => {
     getSingleUser(user.id).then(setUserDetails);
+    getFavoriteBooks(user.id).then(setFavorites);
+  };
+  useEffect(() => {
+    getProfile();
   }, []);
 
   return (
@@ -26,6 +34,17 @@ export default function ProfilePage() {
       <Button onClick={() => router.push('/profile/edit')}>
         Edit profile
       </Button>
+      <hr />
+      <h4>My Favorites</h4>
+      <div className="my-2 d-flex justify-content-center flex-wrap">
+        {favorites.length ? (
+          favorites.map((favorite) => (
+            <BookCard key={favorite.id} obj={favorite} onUpdate={getProfile} />
+          ))
+        ) : (
+          <h5>You don&apos;t have any favorites!</h5>
+        )}
+      </div>
     </div>
   );
 }

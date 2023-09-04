@@ -27,6 +27,23 @@ const getSingleBook = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getFavoriteBooks = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/books?favorite`, {
+    headers: {
+      Authorization: `${id}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(data);
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
 const createBook = (book) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/books`, {
     method: 'POST',
@@ -61,5 +78,5 @@ const deleteBook = (id) => new Promise((resolve, reject) => {
 });
 
 export {
-  getBooks, getSingleBook, createBook, updateBook, deleteBook,
+  getBooks, getSingleBook, createBook, updateBook, deleteBook, getFavoriteBooks,
 };
