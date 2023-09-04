@@ -12,18 +12,23 @@ const getUsers = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getSingleUser = (userId, followerId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/users/${userId}`, {
+const getSingleUser = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/users/${id}`)
+    .then((response) => resolve(response.json()))
+    .catch(reject);
+});
+
+const getUser = (userId, followerId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/users/${userId}/checkfollowing`, {
     headers: {
       Authorization: `${followerId}`,
     },
   })
-    .then((response) => response.json())
-    .then(resolve)
+    .then((response) => resolve(response.json()))
     .catch(reject);
 });
 
-const updateUser = (payload) => new Promise((resolve, reject) => {
+const updateAUser = (payload) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/users/${payload.id}`, {
     method: 'PUT',
     headers: {
@@ -59,5 +64,5 @@ const unfollowUser = (id, followId) => new Promise((resolve, reject) => {
 });
 
 export {
-  getSingleUser, updateUser, getUsers, followUser, unfollowUser,
+  getUser, updateAUser, getUsers, followUser, unfollowUser, getSingleUser,
 };
