@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
+import ReviewForm from '../ReviewForm';
+import { useAuth } from '../../utils/context/authContext';
 
-export default function ReviewCard({ obj }) {
+export default function ReviewCard({ obj, onUpdate }) {
+  const { user } = useAuth();
   return (
     <Card className="text-center">
       <Card.Body>
@@ -22,6 +25,11 @@ export default function ReviewCard({ obj }) {
         <Card.Text className="text-muted fst-italic">
           Review written by {obj.user_id.first_name} {obj.user_id.last_name}
         </Card.Text>
+        {obj.user_id.id === user.id ? (
+          <ReviewForm obj={obj} onUpdate={onUpdate} />
+        ) : (
+          ''
+        )}
       </Card.Body>
     </Card>
   );
@@ -42,4 +50,5 @@ ReviewCard.propTypes = {
       title: PropTypes.string,
     }),
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };
