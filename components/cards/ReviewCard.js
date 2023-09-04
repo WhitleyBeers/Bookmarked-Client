@@ -1,11 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import ReviewForm from '../ReviewForm';
 import { useAuth } from '../../utils/context/authContext';
+import { deleteReview } from '../../api/reviewData';
 
 export default function ReviewCard({ obj, onUpdate }) {
   const { user } = useAuth();
+  const deleteThisReview = () => {
+    if (window.confirm('Are you sure you want to delete your review?')) {
+      deleteReview(obj.id).then(() => onUpdate());
+    }
+  };
+
   return (
     <Card className="text-center">
       <Card.Body>
@@ -26,7 +33,12 @@ export default function ReviewCard({ obj, onUpdate }) {
           Review written by {obj.user_id.first_name} {obj.user_id.last_name}
         </Card.Text>
         {obj.user_id.id === user.id ? (
-          <ReviewForm obj={obj} onUpdate={onUpdate} />
+          <>
+            <ReviewForm obj={obj} onUpdate={onUpdate} />
+            <Button variant="danger" onClick={deleteThisReview}>
+              Delete Review
+            </Button>
+          </>
         ) : (
           ''
         )}
@@ -37,6 +49,7 @@ export default function ReviewCard({ obj, onUpdate }) {
 
 ReviewCard.propTypes = {
   obj: PropTypes.shape({
+    id: PropTypes.number,
     rating: PropTypes.number,
     content: PropTypes.string,
     user_id: PropTypes.shape({
