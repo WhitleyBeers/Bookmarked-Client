@@ -21,7 +21,7 @@ function Home() {
       <div className="my-2 d-flex justify-content-center flex-wrap">
         {reviews.length ? (
           reviews.map((review) => (
-            <ReviewCard key={review.id} obj={review} />
+            <ReviewCard key={review.id} obj={review} onUpdate={getReviews} />
           ))
         ) : (
           <h4>Nothing to show!</h4>
