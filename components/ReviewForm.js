@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Button, FloatingLabel, Form, Modal,
 } from 'react-bootstrap';
@@ -14,24 +14,25 @@ const initialState = {
 
 export default function ReviewForm({ obj, onUpdate }) {
   const [currentReview, setCurrentReview] = useState(initialState);
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleOpen = () => setShow(true);
   const router = useRouter();
   const book = parseInt(router.query.id, 10);
   const { user } = useAuth();
-
-  useEffect(() => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleOpen = () => {
     if (obj.id) {
       setCurrentReview({
         id: obj.id,
-        userId: obj.user_id.id,
+        userId: user.id,
         bookId: obj.book_id.id,
         content: obj.content,
         rating: obj.rating,
       });
+    } else {
+      setCurrentReview(initialState);
     }
-  }, [obj, user]);
+    setShow(true);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
