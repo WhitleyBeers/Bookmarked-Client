@@ -1,25 +1,32 @@
-import { Button } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../utils/context/authContext';
+import { getFollowingReviews } from '../api/reviewData';
+import ReviewCard from '../components/cards/ReviewCard';
 
 function Home() {
   const { user } = useAuth();
+  const [reviews, setReviews] = useState([]);
+
+  const getReviews = () => {
+    getFollowingReviews(user.id).then(setReviews);
+  };
+
+  useEffect(() => {
+    getReviews();
+  }, []);
+
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      <h1>Hello {user.fbUser.displayName}! </h1>
-      <p>Your Bio: {user.bio}</p>
-      <p>Click the button below to logout!</p>
-      <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
-        Sign Out
-      </Button>
+    <div className="text-center mt-4">
+      <h1>Hello {user.first_name}! </h1>
+      <div className="my-2 d-flex justify-content-center flex-wrap">
+        {reviews.length ? (
+          reviews.map((review) => (
+            <ReviewCard key={review.id} obj={review} />
+          ))
+        ) : (
+          <h4>Nothing to show!</h4>
+        )}
+      </div>
     </div>
   );
 }
