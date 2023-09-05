@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import { useAuth } from '../../utils/context/authContext';
 import { getSingleUser } from '../../api/userData';
 import { getFavoriteBooks } from '../../api/bookData';
@@ -19,10 +20,14 @@ export default function ProfilePage() {
   };
   useEffect(() => {
     getProfile();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="mt-1 mx-auto text-center">
+      <Head>
+        <title>My Profile</title>
+      </Head>
       <img
         src={userDetails.profile_image_url}
         alt={userDetails.id}

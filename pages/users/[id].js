@@ -2,6 +2,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import Head from 'next/head';
 import { useAuth } from '../../utils/context/authContext';
 import { getUser, followUser, unfollowUser } from '../../api/userData';
 import { getUserReviews } from '../../api/reviewData';
@@ -32,10 +33,14 @@ export default function UserPage() {
 
   useEffect(() => {
     getUserDetails();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
+      <Head>
+        <title>Viewing User Profile</title>
+      </Head>
       <div className="d-flex">
         <div className="mt-1 mx-auto">
           <img

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import { getSingleBook } from '../../../api/bookData';
 import BookForm from '../../../components/BookForm';
 
@@ -13,6 +14,11 @@ export default function EditBookPage() {
   }, [id]);
 
   return (
-    <BookForm obj={book} />
+    <>
+      <Head>
+        <title>Editing {book.title}</title>
+      </Head>
+      <BookForm obj={book} />
+    </>
   );
 }
