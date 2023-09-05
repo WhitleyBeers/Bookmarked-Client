@@ -2,6 +2,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import Head from 'next/head';
 import { getSingleBook } from '../../api/bookData';
 import ReviewForm from '../../components/ReviewForm';
 import ReviewCard from '../../components/cards/ReviewCard';
@@ -27,6 +28,9 @@ export default function BookDetailsPage() {
 
   return (
     <>
+      <Head>
+        <title>Viewing {bookDetails.title}</title>
+      </Head>
       <div className="d-flex">
         <div className="mt-1 mx-auto">
           <img
