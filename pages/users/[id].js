@@ -62,7 +62,7 @@ export default function UserPage() {
           <hr />
           {reviews.length ? (
             reviews.map((review) => (
-              <ReviewCard key={review.id} obj={review} />
+              <ReviewCard key={review.id} obj={review} onUpdate={getUserDetails} />
             ))
           ) : (
             'No reviews'
