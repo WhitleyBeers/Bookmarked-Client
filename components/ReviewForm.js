@@ -98,11 +98,11 @@ export default function ReviewForm({ obj, onUpdate }) {
                 required
               >
                 <option value="">Select your rating:</option>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-                <option value={5}>5</option>
+                <option value={1}>&#9733;</option>
+                <option value={2}>&#9733;&#9733;</option>
+                <option value={3}>&#9733;&#9733;&#9733;</option>
+                <option value={4}>&#9733;&#9733;&#9733;&#9733;</option>
+                <option value={5}>&#9733;&#9733;&#9733;&#9733;&#9733;</option>
               </Form.Select>
             </Form.Group>
 
