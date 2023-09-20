@@ -32,7 +32,7 @@ export default function BookDetailsPage() {
         <title>Viewing {bookDetails.title}</title>
       </Head>
       <div className="d-flex">
-        <div className="mt-1 mx-auto">
+        <div className="mt-1">
           <img
             src={bookDetails.image_url}
             alt={bookDetails.title}
@@ -48,9 +48,11 @@ export default function BookDetailsPage() {
           <div className="status">
             {bookDetails.status}
           </div>
-          <p className="mb-1">
-            {bookDetails.description}
-          </p>
+          <div className="detail-description">
+            <p className="mb-1">
+              {bookDetails.description}
+            </p>
+          </div>
           <div>
             {bookDetails.user_id === user.id ? (
               <Button onClick={() => router.push(`/library/edit/${id}`)}>
@@ -59,10 +61,9 @@ export default function BookDetailsPage() {
             ) : (
               ''
             )}
-          </div>
-          <div>
             <ReviewForm onUpdate={getBookDetails} />
           </div>
+          <h3 className="title">Reviews</h3>
           <div>
             {reviews.map((review) => (
               <ReviewCard obj={review} key={review.id} onUpdate={getBookDetails} />

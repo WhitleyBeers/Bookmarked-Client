@@ -61,37 +61,37 @@ function RegisterForm({ user, updateUser }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className="mt-3">
       {/* FIRST NAME FIELD */}
-      <Form.Group className="mb-3" controlId="firstName">
+      <Form.Group className="mb-3 subtitle" controlId="firstName">
         <Form.Label>First Name</Form.Label>
         <Form.Control name="firstName" required value={formData.firstName} onChange={handleChange} />
         <Form.Text className="text-muted" />
       </Form.Group>
 
       {/* LAST NAME FIELD */}
-      <Form.Group className="mb-3" controlId="lastName">
+      <Form.Group className="mb-3 subtitle" controlId="lastName">
         <Form.Label>Last Name</Form.Label>
         <Form.Control name="lastName" required value={formData.lastName} onChange={handleChange} />
         <Form.Text className="text-muted" />
       </Form.Group>
 
       {/* PROFILE IMAGE URL FIELD */}
-      <Form.Group className="mb-3" controlId="profileImageUrl">
+      <Form.Group className="mb-3 subtitle" controlId="profileImageUrl">
         <Form.Label>Profile Image</Form.Label>
         <Form.Control type="url" name="profileImageUrl" required value={formData.profileImageUrl} onChange={handleChange} />
         <Form.Text className="text-muted" />
       </Form.Group>
 
       {/* EMAIL FIELD */}
-      <Form.Group className="mb-3" controlId="email">
+      <Form.Group className="mb-3 subtitle" controlId="email">
         <Form.Label>Email Address</Form.Label>
         <Form.Control name="email" required value={formData.email} onChange={handleChange} />
         <Form.Text className="text-muted" />
       </Form.Group>
 
       {/* BIO FIELD */}
-      <Form.Group className="mb-3" controlId="bio">
+      <Form.Group className="mb-3 subtitle" controlId="bio">
         <Form.Label>Tell us about yourself:</Form.Label>
         <Form.Control type="textarea" name="bio" required value={formData.bio} onChange={handleChange} />
         <Form.Text className="text-muted" />

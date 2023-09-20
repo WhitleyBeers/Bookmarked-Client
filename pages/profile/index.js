@@ -24,31 +24,37 @@ export default function ProfilePage() {
   }, []);
 
   return (
-    <div className="mt-1 mx-auto text-center">
+    <div className="mt-1">
       <Head>
         <title>My Profile</title>
       </Head>
-      <img
-        src={userDetails.profile_image_url}
-        alt={userDetails.id}
-        style={{ height: '315px', width: '315px' }}
-        className="mt-3"
-      />
-      <h3>Hi, {userDetails.first_name}!</h3>
-      <p>{userDetails.bio}</p>
-      <Button onClick={() => router.push('/profile/edit')}>
-        Edit profile
-      </Button>
-      <hr />
-      <h4>My Favorites</h4>
-      <div className="my-2 d-flex justify-content-center flex-wrap">
-        {favorites.length ? (
-          favorites.map((favorite) => (
-            <BookCard key={favorite.id} obj={favorite} onUpdate={getProfile} />
-          ))
-        ) : (
-          <h5>You don&apos;t have any favorites!</h5>
-        )}
+      <h1 className="title">My Profile</h1>
+      <div className="profile-card">
+        <div className="text-center">
+          <img
+            src={userDetails.profile_image_url}
+            alt={userDetails.id}
+            style={{ height: '215px', width: '215px' }}
+            className="mt-1"
+          />
+          <h3 className="status">Hi, {userDetails.first_name}!</h3>
+          <p>{userDetails.bio}</p>
+          <Button onClick={() => router.push('/profile/edit')}>
+            Edit profile
+          </Button>
+        </div>
+        <div>
+          <div className="favorites">
+            <h3 className="favorites-header">My Favorites</h3>
+            {favorites.length ? (
+              favorites.map((favorite) => (
+                <BookCard key={favorite.id} obj={favorite} onUpdate={getProfile} />
+              ))
+            ) : (
+              <h5>You don&apos;t have any favorites!</h5>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

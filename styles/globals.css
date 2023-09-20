@@ -27,52 +27,6 @@ body {
   background-color: #FBF2DA;
 }
 
-.book-photo {
-  width: 180px;
-  flex-shrink: 0;
-  bottom: -35px;
-  left: 35px;
-  border-radius: 2px;
-  box-shadow: -2px 6px 19px 0px #7f818e;
-  flex: 0 0 auto; /* Prevent image from growing */
-  margin-right: 20px; /* Adjust the spacing between the image and card content */
-  transition: .3s ease;
-  &:hover {
-   transform: scale(1.03);
-  }
- }
-
- .book-card {
-  width: 75%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start; /* Align items at the top of the flex container */
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  background-color: transparent;
-  border: 1px solid #152B3C;
-}
-
-.book-details {
-  margin-left: 20px;
-  margin-top: 10px;
-  flex: 1; /* Allow details to grow and take available space */
-  display: flex;
-  flex-direction: column; /* Arrange details in a column */
-}
-
-.book-content {
-  margin-right: 10px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
- }
-
- .book-title {
-  font-family: Work Sans;
-  font-size: 1.5rem;
- }
-
  .btn-primary {
   background-color:#D46240;
   border-color: #D46240;
@@ -196,3 +150,101 @@ body {
   margin-top: 1rem;
   margin-bottom: 1rem;
  }
+
+ .profile-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Align items at the top of the flex container */
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+ }
+
+ .favorites {
+  margin-left: 20px;
+  margin-top: 10px;
+  flex: 1; /* Allow details to grow and take available space */
+  display: flex;
+  flex-direction: column; /* Arrange details in a column */
+  flex-wrap: wrap;
+  align-items: flex-end;
+ }
+
+ .favorites-header {
+  font-family: Work Sans;
+  text-transform: uppercase;
+  font-weight: bold;
+  align-self: center;
+ }
+
+ .book-photo {
+  width: 180px;
+  flex-shrink: 0;
+  bottom: -35px;
+  left: 35px;
+  border-radius: 2px;
+  box-shadow: -2px 6px 19px 0px #7f818e;
+  flex: 0 0 auto; /* Prevent image from growing */
+  margin-right: 20px; /* Adjust the spacing between the image and card content */
+  transition: .3s ease;
+  &:hover {
+   transform: scale(1.03);
+  }
+ }
+
+ .book-card {
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Align items at the top of the flex container */
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  background-color: transparent;
+  border: 1px solid #152B3C;
+}
+
+.book-details {
+  margin-left: 20px;
+  margin-top: 10px;
+  flex: 1; /* Allow details to grow and take available space */
+  display: flex;
+  flex-direction: column; /* Arrange details in a column */
+}
+
+.book-content {
+  margin-right: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+ }
+
+ .book-title {
+  font-family: Work Sans;
+  font-size: 1.5rem;
+ }
+
+ .book-card-body {
+  display: flex;
+  flex-direction: row;
+}
+
+.image-container {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.review-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Align items at the top of the flex container */
+  margin-bottom: 10px;
+  margin-right: 10px;
+  border: 1px solid #152B3C;
+}
+
+.review-details {
+  margin-left: 10px;
+  flex: 1; /* Allow details to grow and take available space */
+  display: flex;
+  flex-direction: column; /* Arrange details in a column */
+}

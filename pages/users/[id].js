@@ -42,36 +42,38 @@ export default function UserPage() {
         <title>Viewing User Profile</title>
       </Head>
       <div className="d-flex">
-        <div className="mt-1 mx-auto">
-          <img
-            src={userDetails.profile_image_url}
-            alt={userDetails.id}
-            style={{ height: '315px', width: '315px' }}
-            className="mt-3"
-          />
-          <h3>{userDetails.first_name} {userDetails.last_name}</h3>
-          <hr />
-          <p>{userDetails.bio}</p>
-          {userDetails.following && user.id !== id ? (
-            <Button variant="danger" onClick={unfollow}>Unfollow</Button>
-          ) : (
-            ''
-          )}
-          {!userDetails.following && user.id !== id ? (
-            <Button variant="secondary" onClick={follow}>Follow</Button>
-          ) : (
-            ''
-          )}
-          <br />
-          <h4>{userDetails.first_name}&apos;s Reviews</h4>
-          <hr />
-          {reviews.length ? (
-            reviews.map((review) => (
-              <ReviewCard key={review.id} obj={review} onUpdate={getUserDetails} />
-            ))
-          ) : (
-            'No reviews'
-          )}
+        <div className="mt-1 profile-card">
+          <div>
+            <img
+              src={userDetails.profile_image_url}
+              alt={userDetails.id}
+              style={{ height: '315px', width: '315px' }}
+              className="mt-3"
+            />
+            <h3 className="title">{userDetails.first_name} {userDetails.last_name}</h3>
+            <p>{userDetails.bio}</p>
+            {userDetails.following && user.id !== id ? (
+              <Button variant="danger" onClick={unfollow}>Unfollow</Button>
+            ) : (
+              ''
+            )}
+            {!userDetails.following && user.id !== id ? (
+              <Button variant="secondary" onClick={follow}>Follow</Button>
+            ) : (
+              ''
+            )}
+          </div>
+          <div className="ms-5">
+            <h4 className="title">{userDetails.first_name}&apos;s Reviews</h4>
+            <hr />
+            {reviews.length ? (
+              reviews.map((review) => (
+                <ReviewCard key={review.id} obj={review} onUpdate={getUserDetails} />
+              ))
+            ) : (
+              'No reviews'
+            )}
+          </div>
         </div>
       </div>
     </>
