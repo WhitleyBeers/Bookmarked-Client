@@ -42,11 +42,11 @@ export default function BookDetailsPage() {
           <h2>
             {bookDetails.title} {bookDetails.favorite ? '❤' : ''}
           </h2>
-          <div>
-            <em>{bookDetails.author}</em>
+          <div className="subtitle">
+            <em>Written by</em> {bookDetails.author}
           </div>
-          <div>
-            <em><b>{bookDetails.status}</b></em>
+          <div className="status">
+            {bookDetails.status}
           </div>
           <p className="mb-1">
             {bookDetails.description}

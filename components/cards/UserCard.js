@@ -19,27 +19,28 @@ export default function UserCard({ obj, onUpdate }) {
     unfollowUser(user.id, obj.id).then(onUpdate);
   };
   return (
-    <Card className="text-center py-3 px-1 m-2" style={{ width: '18rem' }}>
+    <Card className="text-center m-2 user-card">
       <Card.Body>
-        <Card.Img
-          src={obj.profile_image_url}
-          alt={obj.first_name}
-          style={{ height: '250px', width: '225px' }}
-        />
-        <Card.Text>
+        <Card.Text className="user-title mt-0">
           {obj.first_name} {obj.last_name}
         </Card.Text>
+        <Card.Img
+          className="mb-1"
+          src={obj.profile_image_url}
+          alt={obj.first_name}
+          style={{ height: '194px', width: '175px' }}
+        />
         <Card.Text>
           <Button onClick={() => router.push(`/users/${obj.id}`)}>
             View Profile
           </Button>
           {obj.following && user.id !== obj.id ? (
-            <Button variant="danger" onClick={unfollow}>Unfollow</Button>
+            <Button variant="danger" onClick={unfollow} className="m-1">Unfollow</Button>
           ) : (
             ''
           )}
           {!obj.following && user.id !== obj.id ? (
-            <Button variant="secondary" onClick={follow}>Follow</Button>
+            <Button variant="success" onClick={follow} className="m-1">Follow</Button>
           ) : (
             ''
           )}

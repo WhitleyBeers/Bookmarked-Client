@@ -68,7 +68,7 @@ export default function ReviewForm({ obj, onUpdate }) {
 
   return (
     <>
-      <Button className="m-1" variant="success" onClick={handleOpen}>
+      <Button className="m-1" variant="secondary" onClick={handleOpen}>
         {obj.id ? 'Edit' : 'Add'} Review
       </Button>
       <Modal show={show} onHide={handleClose} className="text-black">

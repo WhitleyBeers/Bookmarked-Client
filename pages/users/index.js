@@ -22,6 +22,7 @@ export default function UserPage() {
       <Head>
         <title>Viewing Users</title>
       </Head>
+      <h1 className="title">BookMarked Users</h1>
       <div className="my-2 d-flex justify-content-center flex-wrap">
         {users ? (
           users.map((singleUser) => (

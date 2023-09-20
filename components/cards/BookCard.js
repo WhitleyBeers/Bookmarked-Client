@@ -18,27 +18,27 @@ export default function BookCard({ obj, onUpdate }) {
           {obj.title}
           {obj.favorite ? '❤' : ''}
         </Card.Title>
-        <Card.Text className="book-author text-muted fst-italic">
+        <Card.Text className="book-author fst-italic subtitle mb-0">
           by {obj.author}
         </Card.Text>
-        <Card.Text className="book-content">
+        <Card.Text className="book-content m-0">
           {obj.description}
         </Card.Text>
-        <Card.Text className="text-muted fst-italic">
+        <Card.Text className="status my-1">
           {obj.status}
         </Card.Text>
         <Dropdown>
-          <Dropdown.Toggle className="card-dropdown">
+          <Dropdown.Toggle className="card-dropdown mt-3">
             Options
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item href={`/library/${obj.id}`}>
+            <Dropdown.Item href={`/library/${obj.id}`} className="subtitle">
               View Details
             </Dropdown.Item>
-            <Dropdown.Item href={`/library/edit/${obj.id}`}>
+            <Dropdown.Item href={`/library/edit/${obj.id}`} className="subtitle">
               Edit Book Info
             </Dropdown.Item>
-            <Dropdown.Item onClick={deleteThisBook}>
+            <Dropdown.Item onClick={deleteThisBook} className="subtitle">
               Delete Book
             </Dropdown.Item>
           </Dropdown.Menu>
