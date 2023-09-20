@@ -71,12 +71,12 @@ export default function BookForm({ obj }) {
 
   return (
     <Form onSubmit={handleSubmit} className="mt-3">
-      <h3>
+      <h3 className="title">
         {obj.id ? 'Edit' : 'Add'} Book
       </h3>
 
       {/* TITLE FIELD */}
-      <Form.Group className="mb-3">
+      <Form.Group className="mb-3 subtitle">
         <Form.Label>Title</Form.Label>
         <Form.Control
           name="title"
@@ -87,7 +87,7 @@ export default function BookForm({ obj }) {
       </Form.Group>
 
       {/* author FIELD */}
-      <Form.Group className="mb-3">
+      <Form.Group className="mb-3 subtitle">
         <Form.Label>Author</Form.Label>
         <Form.Control
           name="author"
@@ -98,7 +98,7 @@ export default function BookForm({ obj }) {
       </Form.Group>
 
       {/* description FIELD */}
-      <Form.Group className="mb-3">
+      <Form.Group className="mb-3 subtitle">
         <Form.Label>Description</Form.Label>
         <Form.Control
           type="textarea"
@@ -110,7 +110,7 @@ export default function BookForm({ obj }) {
       </Form.Group>
 
       {/* imageUrl FIELD */}
-      <Form.Group className="mb-3">
+      <Form.Group className="mb-3 subtitle">
         <Form.Label>Image URL</Form.Label>
         <Form.Control
           name="imageUrl"
@@ -121,7 +121,7 @@ export default function BookForm({ obj }) {
       </Form.Group>
 
       {/* STATUS SELECT */}
-      <Form.Group className="mb-3">
+      <Form.Group className="mb-3 subtitle">
         <Form.Label>Book Status</Form.Label>
         <Form.Select
           name="status"
@@ -139,7 +139,7 @@ export default function BookForm({ obj }) {
 
       {/* FAVORITE CHECKBOX */}
       <Form.Check
-        className="text-black"
+        className="text-black subtitle"
         type="switch"
         id="favorite"
         name="favorite"

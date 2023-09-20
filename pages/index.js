@@ -22,7 +22,7 @@ function Home() {
       <Head>
         <title>BookMarked</title>
       </Head>
-      <h1>Hello {user.first_name}! </h1>
+      <h1 className="title">Hello {user.first_name}! </h1>
       <div className="my-2 d-flex justify-content-center flex-wrap">
         {reviews.length ? (
           reviews.map((review) => (

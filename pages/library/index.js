@@ -22,7 +22,7 @@ export default function LibraryPage() {
       <Head>
         <title>My Library</title>
       </Head>
-      <h2>My Library</h2>
+      <h1 className="title">My Library</h1>
       <div className="my-2 d-flex justify-content-center flex-wrap">
         {books.length ? (
           books.map((book) => (

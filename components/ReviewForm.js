@@ -68,7 +68,7 @@ export default function ReviewForm({ obj, onUpdate }) {
 
   return (
     <>
-      <Button className="m-1" variant="success" onClick={handleOpen}>
+      <Button className="m-1" variant="secondary" onClick={handleOpen}>
         {obj.id ? 'Edit' : 'Add'} Review
       </Button>
       <Modal show={show} onHide={handleClose} className="text-black">
@@ -98,11 +98,11 @@ export default function ReviewForm({ obj, onUpdate }) {
                 required
               >
                 <option value="">Select your rating:</option>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-                <option value={5}>5</option>
+                <option value={1}>&#9733;</option>
+                <option value={2}>&#9733;&#9733;</option>
+                <option value={3}>&#9733;&#9733;&#9733;</option>
+                <option value={4}>&#9733;&#9733;&#9733;&#9733;</option>
+                <option value={5}>&#9733;&#9733;&#9733;&#9733;&#9733;</option>
               </Form.Select>
             </Form.Group>
 
